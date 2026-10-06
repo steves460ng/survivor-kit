@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>뱀서류 로그라이크 키트 프로토타입</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+<h1>뱀서류 로그라이크 키트 · 프로토타입</h1>
+<div id="stage">
+<canvas id="c" width="800" height="480"></canvas>
+<div class="ov on" id="ovStart"></div>
+<div class="ov" id="ovLevel"></div>
+<div class="ov" id="ovEnd"></div>
+</div>
+<p class="hint">이동: WASD/방향키 또는 화면 드래그. 공격은 자동입니다.</p>
+<details class="pn" open>
+<summary>모드 데이터 (JSON) — 수정 후 적용하면 바로 반영됩니다</summary>
+<textarea id="ta" spellcheck="false"></textarea>
+<div class="row" style="justify-content:flex-start;margin-top:8px">
+<button class="go" id="apply">적용</button>
+<button class="go" id="reset" style="background:#6b6f68">기본값 복원</button>
+</div>
+<div id="msg"></div>
+</details>
+</main>
+<script src="game.js" defer></script>
+</body>
+</html>

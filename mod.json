@@ -1,0 +1,842 @@
+{
+  "assets": {
+    "imgDir": "./img"
+  },
+  "classes": {
+    "mage": {
+      "name": "마법사",
+      "desc": "고대 마법서를 품고 떠도는 학자. 몸은 약하지만, 멀리서 쏟아내는 마력으로 적을 쓸어버린다.",
+      "sprite": "🧙",
+      "hurtSprite": "🤕",
+      "hp": 80,
+      "speed": 150,
+      "start": [
+        "bolt"
+      ],
+      "pool": {
+        "bolt": 3,
+        "aura": 2,
+        "might": 2,
+        "boots": 1,
+        "heart": 1,
+        "magnet": 1
+      }
+    },
+    "knight": {
+      "name": "기사",
+      "desc": "무너진 왕국의 마지막 수호자. 느리지만 단단한 몸으로 적진 한가운데서 검을 휘두른다.",
+      "sprite": "🛡️",
+      "hurtSprite": "😖",
+      "hp": 140,
+      "speed": 120,
+      "start": [
+        "orbit_blade"
+      ],
+      "pool": {
+        "orbit_blade": 3,
+        "aura": 3,
+        "might": 2,
+        "heart": 3,
+        "boots": 1,
+        "magnet": 1
+      }
+    },
+    "rogue": {
+      "name": "도적",
+      "desc": "그림자 속을 달리는 암살자. 재빠른 발과 날쌘 단검으로 적의 빈틈을 파고든다.",
+      "sprite": "🥷",
+      "hurtSprite": "😣",
+      "hp": 90,
+      "speed": 180,
+      "start": [
+        "knife"
+      ],
+      "pool": {
+        "knife": 3,
+        "bolt": 2,
+        "boots": 3,
+        "might": 1,
+        "magnet": 2,
+        "orbit_blade": 1
+      }
+    }
+  },
+  "skills": {
+    "bolt": {
+      "name": "매직 볼트",
+      "type": "projectile",
+      "rarity": "common",
+      "sprite": "✨",
+      "dmg": 10,
+      "cd": 0.9,
+      "speed": 360,
+      "count": 1,
+      "pierce": 0,
+      "max": 6,
+      "hitFx": {
+        "sprite": "💫",
+        "size": 24,
+        "time": 0.25
+      },
+      "castFx": {
+        "sprite": "✨",
+        "size": 14,
+        "time": 0.12
+      },
+      "desc": "가까운 적에게 발사"
+    },
+    "knife": {
+      "name": "단검 투척",
+      "type": "projectile",
+      "rarity": "common",
+      "sprite": "🔪",
+      "dmg": 7,
+      "cd": 0.5,
+      "speed": 520,
+      "count": 1,
+      "pierce": 1,
+      "max": 6,
+      "hitFx": {
+        "sprite": "🩸",
+        "size": 20,
+        "time": 0.25
+      },
+      "castFx": {
+        "sprite": "💨",
+        "size": 14,
+        "time": 0.1
+      },
+      "desc": "빠르고 관통"
+    },
+    "orbit_blade": {
+      "name": "회전 검",
+      "type": "orbit",
+      "rarity": "rare",
+      "sprite": "🗡️",
+      "dmg": 8,
+      "count": 2,
+      "radius": 60,
+      "speed": 3,
+      "size": 12,
+      "max": 6,
+      "hitFx": {
+        "sprite": "⚔️",
+        "size": 22,
+        "time": 0.2
+      },
+      "desc": "주위를 도는 검"
+    },
+    "aura": {
+      "name": "불꽃 오라",
+      "type": "aura",
+      "rarity": "common",
+      "sprite": "🔥",
+      "dmg": 6,
+      "radius": 70,
+      "tick": 0.5,
+      "max": 6,
+      "hitFx": {
+        "sprite": "🔥",
+        "size": 18,
+        "time": 0.2
+      },
+      "castFx": {
+        "sprite": "🔆",
+        "time": 0.2
+      },
+      "desc": "주변 적에게 지속 피해"
+    },
+    "might": {
+      "name": "힘의 문장",
+      "type": "stat",
+      "rarity": "common",
+      "sprite": "💪",
+      "stat": "might",
+      "add": 0.2,
+      "max": 5,
+      "desc": "모든 피해 +20%"
+    },
+    "boots": {
+      "name": "가벼운 신발",
+      "type": "stat",
+      "rarity": "common",
+      "sprite": "👟",
+      "stat": "speed",
+      "add": 20,
+      "max": 5,
+      "desc": "이동 속도 +20"
+    },
+    "heart": {
+      "name": "생명의 심장",
+      "type": "stat",
+      "rarity": "rare",
+      "sprite": "❤️",
+      "stat": "maxhp",
+      "add": 20,
+      "max": 5,
+      "desc": "최대 체력 +20, 회복"
+    },
+    "magnet": {
+      "name": "자석",
+      "type": "stat",
+      "rarity": "common",
+      "sprite": "🧲",
+      "stat": "pickup",
+      "add": 0.3,
+      "max": 4,
+      "desc": "획득 범위 +30%"
+    }
+  },
+  "enemies": {
+    "slime": {
+      "sprite": "🟢",
+      "hp": 12,
+      "speed": 55,
+      "dmg": 6,
+      "r": 12,
+      "xp": 1,
+      "hitSprite": "🟡"
+    },
+    "bat": {
+      "sprite": "🦇",
+      "hp": 8,
+      "speed": 95,
+      "dmg": 5,
+      "r": 10,
+      "xp": 1,
+      "hitSprite": "😵"
+    },
+    "golem": {
+      "sprite": "🗿",
+      "hp": 60,
+      "speed": 40,
+      "dmg": 12,
+      "r": 20,
+      "xp": 4,
+      "hitSprite": "💢"
+    },
+    "boss": {
+      "sprite": "👹",
+      "hp": 900,
+      "speed": 60,
+      "dmg": 20,
+      "r": 34,
+      "xp": 30,
+      "hitSprite": "👺"
+    }
+  },
+  "fx": {
+    "hit": {
+      "sprite": "💥",
+      "size": 20,
+      "time": 0.2
+    },
+    "playerHit": {
+      "sprite": "💢",
+      "size": 26,
+      "time": 0.3
+    }
+  },
+  "xp": {
+    "base": 5,
+    "growth": 1.35,
+    "flat": 3
+  },
+  "difficulty": {
+    "default": "normal",
+    "presets": {
+      "easy": {
+        "name": "쉬움",
+        "hp": 0.7,
+        "dmg": 0.7,
+        "speed": 0.9,
+        "spawn": 0.7,
+        "xp": 1.3,
+        "hpGrowth": 0.004,
+        "spawnGrowth": 0.008,
+        "maxEnemies": 150
+      },
+      "normal": {
+        "name": "보통",
+        "hp": 1,
+        "dmg": 1,
+        "speed": 1,
+        "spawn": 1,
+        "xp": 1,
+        "hpGrowth": 0.0067,
+        "spawnGrowth": 0.0111,
+        "maxEnemies": 250
+      },
+      "hard": {
+        "name": "어려움",
+        "hp": 1.4,
+        "dmg": 1.3,
+        "speed": 1.1,
+        "spawn": 1.4,
+        "xp": 0.8,
+        "hpGrowth": 0.01,
+        "spawnGrowth": 0.015,
+        "maxEnemies": 350
+      }
+    },
+    "clearScaling": {
+      "mode": "compound",
+      "hp": 0.15,
+      "dmg": 0.1,
+      "speed": 0.03,
+      "spawn": 0.12,
+      "xp": 0.05,
+      "maxEnemies": 10,
+      "cap": {
+        "hp": 6,
+        "dmg": 4,
+        "speed": 1.8,
+        "spawn": 4,
+        "xp": 3
+      }
+    },
+    "onDeath": "keep"
+  },
+  "screens": {
+    "opening": {
+      "title": "뱀서류 로그라이크 키트",
+      "subtitle": "끝까지 살아남아라",
+      "startText": "게임 시작",
+      "background": "radial-gradient(circle at 50% 30%, #2b4a3a, #0e1411 70%)"
+    },
+    "select": {
+      "title": "클래스를 선택하세요",
+      "background": "linear-gradient(#16231d, #0e1411)"
+    },
+    "mapSelect": {
+      "title": "맵을 선택하세요",
+      "background": "linear-gradient(#1a2318, #0e1411)"
+    },
+    "scoreboard": {
+      "title": "스코어 보드",
+      "background": "linear-gradient(#241d2b, #0e1411)"
+    }
+  },
+  "scoreboard": {
+    "maxEntries": 10,
+    "formula": {
+      "kill": 10,
+      "second": 1,
+      "level": 50,
+      "xp": 2,
+      "win": 1000
+    }
+  },
+  "meta": {
+    "pointsPerXp": 0.015,
+    "winBonus": 5,
+    "trees": {
+      "combat": {
+        "name": "전투",
+        "nodes": {
+          "pow1": {
+            "name": "근력",
+            "sprite": "💪",
+            "pos": [
+              1,
+              0
+            ],
+            "max": 5,
+            "cost": 1,
+            "requires": [],
+            "effects": [
+              {
+                "stat": "might",
+                "add": 0.05
+              }
+            ]
+          },
+          "haste": {
+            "name": "속공",
+            "sprite": "⚡",
+            "pos": [
+              0,
+              1
+            ],
+            "max": 5,
+            "cost": 1,
+            "requires": [
+              {
+                "id": "pow1",
+                "rank": 2
+              }
+            ],
+            "effects": [
+              {
+                "stat": "cdr",
+                "add": 0.04
+              }
+            ]
+          },
+          "rage": {
+            "name": "분노",
+            "sprite": "😡",
+            "pos": [
+              2,
+              1
+            ],
+            "max": 5,
+            "cost": 1,
+            "requires": [
+              {
+                "id": "pow1",
+                "rank": 3
+              }
+            ],
+            "effects": [
+              {
+                "stat": "might",
+                "add": 0.08
+              },
+              {
+                "stat": "speed",
+                "add": 3
+              }
+            ]
+          },
+          "arcane": {
+            "name": "비전 집중",
+            "sprite": "🔮",
+            "pos": [
+              0,
+              2
+            ],
+            "max": 3,
+            "cost": 2,
+            "requires": [
+              {
+                "id": "haste",
+                "rank": 3
+              }
+            ],
+            "classes": [
+              "mage"
+            ],
+            "effects": [
+              {
+                "stat": "cdr",
+                "add": 0.06
+              },
+              {
+                "stat": "might",
+                "add": 0.05
+              }
+            ]
+          },
+          "master": {
+            "name": "전투 숙련",
+            "sprite": "🏆",
+            "pos": [
+              1,
+              2
+            ],
+            "max": 3,
+            "cost": 2,
+            "requires": [
+              {
+                "id": "haste",
+                "rank": 2
+              },
+              {
+                "id": "rage",
+                "rank": 2
+              }
+            ],
+            "reqTreePoints": 6,
+            "effects": [
+              {
+                "stat": "might",
+                "add": 0.1
+              },
+              {
+                "stat": "cdr",
+                "add": 0.05
+              }
+            ]
+          }
+        }
+      },
+      "survival": {
+        "name": "생존",
+        "nodes": {
+          "vit": {
+            "name": "강인함",
+            "sprite": "❤️",
+            "pos": [
+              1,
+              0
+            ],
+            "max": 5,
+            "cost": 1,
+            "requires": [],
+            "effects": [
+              {
+                "stat": "maxhp",
+                "add": 10
+              }
+            ]
+          },
+          "regen": {
+            "name": "재생",
+            "sprite": "🌿",
+            "pos": [
+              0,
+              1
+            ],
+            "max": 5,
+            "cost": 1,
+            "requires": [
+              {
+                "id": "vit",
+                "rank": 2
+              }
+            ],
+            "effects": [
+              {
+                "stat": "regen",
+                "add": 0.3
+              }
+            ]
+          },
+          "guard": {
+            "name": "방어",
+            "sprite": "🛡️",
+            "pos": [
+              2,
+              1
+            ],
+            "max": 5,
+            "cost": 1,
+            "requires": [
+              {
+                "id": "vit",
+                "rank": 2
+              }
+            ],
+            "effects": [
+              {
+                "stat": "armor",
+                "add": 0.04
+              }
+            ]
+          },
+          "unyield": {
+            "name": "불굴",
+            "sprite": "🗿",
+            "pos": [
+              1,
+              2
+            ],
+            "max": 3,
+            "cost": 2,
+            "requires": [
+              {
+                "id": "regen",
+                "rank": 2
+              },
+              {
+                "id": "guard",
+                "rank": 2
+              }
+            ],
+            "reqTreePoints": 6,
+            "effects": [
+              {
+                "stat": "maxhp",
+                "add": 20
+              },
+              {
+                "stat": "armor",
+                "add": 0.03
+              },
+              {
+                "stat": "regen",
+                "add": 0.2
+              }
+            ]
+          }
+        }
+      },
+      "utility": {
+        "name": "탐험",
+        "nodes": {
+          "swift": {
+            "name": "질주",
+            "sprite": "👟",
+            "pos": [
+              1,
+              0
+            ],
+            "max": 5,
+            "cost": 1,
+            "requires": [],
+            "effects": [
+              {
+                "stat": "speed",
+                "add": 6
+              }
+            ]
+          },
+          "mag": {
+            "name": "자력",
+            "sprite": "🧲",
+            "pos": [
+              0,
+              1
+            ],
+            "max": 5,
+            "cost": 1,
+            "requires": [
+              {
+                "id": "swift",
+                "rank": 2
+              }
+            ],
+            "effects": [
+              {
+                "stat": "pickup",
+                "add": 0.15
+              }
+            ]
+          },
+          "learn": {
+            "name": "학습",
+            "sprite": "📘",
+            "pos": [
+              2,
+              1
+            ],
+            "max": 5,
+            "cost": 1,
+            "requires": [
+              {
+                "id": "swift",
+                "rank": 2
+              }
+            ],
+            "effects": [
+              {
+                "stat": "xpGain",
+                "add": 0.06
+              }
+            ]
+          },
+          "sage": {
+            "name": "현자",
+            "sprite": "🧙‍♂️",
+            "pos": [
+              1,
+              2
+            ],
+            "max": 3,
+            "cost": 2,
+            "requires": [
+              {
+                "id": "mag",
+                "rank": 2
+              },
+              {
+                "id": "learn",
+                "rank": 2
+              }
+            ],
+            "reqTreePoints": 6,
+            "effects": [
+              {
+                "stat": "xpGain",
+                "add": 0.1
+              },
+              {
+                "stat": "pickup",
+                "add": 0.2
+              },
+              {
+                "stat": "speed",
+                "add": 8
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "account": {
+    "base": 200,
+    "growth": 1.5
+  },
+  "maps": {
+    "forest": {
+      "name": "고요한 숲",
+      "sprite": "🌲",
+      "desc": "기본 맵. 완만한 난이도.",
+      "unlock": {
+        "level": 1
+      },
+      "difficulty": {
+        "hp": 1,
+        "dmg": 1,
+        "speed": 1,
+        "spawn": 1,
+        "xp": 1
+      },
+      "pointsMult": 1,
+      "groundColor": "#0e1411",
+      "gridColor": "#1b2a22",
+      "size": 2000,
+      "obstacles": {
+        "count": 40,
+        "sprite": "🪨",
+        "rMin": 16,
+        "rMax": 28
+      },
+      "traps": {
+        "count": 14,
+        "sprite": "🔥",
+        "dps": 12,
+        "r": 26
+      },
+      "spawns": [
+        {
+          "t": 0,
+          "enemy": "slime",
+          "rate": 1.2
+        },
+        {
+          "t": 20,
+          "enemy": "bat",
+          "rate": 0.8
+        },
+        {
+          "t": 50,
+          "enemy": "golem",
+          "rate": 0.3
+        }
+      ],
+      "boss": {
+        "t": 90,
+        "enemy": "boss"
+      },
+      "drops": {
+        "heal": 0.02,
+        "healAmount": 25
+      }
+    },
+    "cave": {
+      "name": "어두운 동굴",
+      "sprite": "🕳️",
+      "desc": "장애물이 많고 박쥐가 일찍 나타납니다.",
+      "unlock": {
+        "level": 3
+      },
+      "difficulty": {
+        "hp": 1.2,
+        "dmg": 1.1,
+        "speed": 1,
+        "spawn": 1.2,
+        "xp": 1.15
+      },
+      "pointsMult": 1.3,
+      "groundColor": "#13121a",
+      "gridColor": "#221f33",
+      "size": 2400,
+      "obstacles": {
+        "count": 70,
+        "sprite": "🪨",
+        "rMin": 18,
+        "rMax": 34
+      },
+      "traps": {
+        "count": 16,
+        "sprite": "🕸️",
+        "dps": 9,
+        "r": 24
+      },
+      "spawns": [
+        {
+          "t": 0,
+          "enemy": "bat",
+          "rate": 0.9
+        },
+        {
+          "t": 0,
+          "enemy": "slime",
+          "rate": 0.8
+        },
+        {
+          "t": 30,
+          "enemy": "golem",
+          "rate": 0.35
+        }
+      ],
+      "boss": {
+        "t": 100,
+        "enemy": "boss"
+      },
+      "drops": {
+        "heal": 0.015,
+        "healAmount": 25
+      }
+    },
+    "volcano": {
+      "name": "불타는 화산",
+      "sprite": "🌋",
+      "desc": "함정이 많고 골렘이 일찍 등장합니다.",
+      "unlock": {
+        "level": 6
+      },
+      "difficulty": {
+        "hp": 1.5,
+        "dmg": 1.3,
+        "speed": 1.05,
+        "spawn": 1.4,
+        "xp": 1.3
+      },
+      "pointsMult": 1.7,
+      "groundColor": "#1f100c",
+      "gridColor": "#3a1d14",
+      "size": 2600,
+      "obstacles": {
+        "count": 45,
+        "sprite": "🪨",
+        "rMin": 16,
+        "rMax": 30
+      },
+      "traps": {
+        "count": 34,
+        "sprite": "🔥",
+        "dps": 18,
+        "r": 30
+      },
+      "spawns": [
+        {
+          "t": 0,
+          "enemy": "slime",
+          "rate": 1
+        },
+        {
+          "t": 10,
+          "enemy": "bat",
+          "rate": 0.9
+        },
+        {
+          "t": 30,
+          "enemy": "golem",
+          "rate": 0.5
+        }
+      ],
+      "boss": {
+        "t": 120,
+        "enemy": "boss"
+      },
+      "drops": {
+        "heal": 0.012,
+        "healAmount": 30
+      }
+    }
+  }
+}
