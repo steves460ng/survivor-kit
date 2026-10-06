@@ -439,18 +439,6 @@ cv.addEventListener("pointerdown",e=>{drag={ox:e.clientX,oy:e.clientY,dx:0,dy:0}
 cv.addEventListener("pointermove",e=>{if(!drag)return;const dx=(e.clientX-drag.ox)/40,dy=(e.clientY-drag.oy)/40,l=Math.hypot(dx,dy);drag.dx=l>1?dx/l:dx;drag.dy=l>1?dy/l:dy});
 cv.addEventListener("pointerup",()=>drag=null);cv.addEventListener("pointercancel",()=>drag=null);
 
-// ===== 모드 편집 =====
-const ta=document.getElementById("ta"),msg=document.getElementById("msg");
-const dump=()=>ta.value=JSON.stringify(MOD,null,1);
-document.getElementById("apply").onclick=()=>{
-  try{
-    const m=JSON.parse(ta.value),errs=validate(m);
-    if(errs.length){msg.textContent="적용 실패:\n- "+errs.join("\n- ");return}
-    MOD=m;msg.textContent="적용되었습니다. 오프닝 화면으로 돌아갑니다."+(errs.warnings?.length?"\n경고:\n- "+errs.warnings.join("\n- "):"");showOpening();
-  }catch(e){msg.textContent="JSON 오류: "+e.message}
-};
-document.getElementById("reset").onclick=()=>{MOD=JSON.parse(JSON.stringify(DEFAULT_MOD));dump();msg.textContent="기본값으로 복원했습니다.";showOpening()};
-let initWarn=[];
 async function init(){
   try{
     const r=await fetch(MOD_PATH,{cache:"no-cache"});
@@ -459,7 +447,7 @@ async function init(){
     const errs=validate(DEFAULT_MOD);
     if(errs.length)throw new Error("모드 검증 실패:\n- "+errs.join("\n- "));
     MOD=JSON.parse(JSON.stringify(DEFAULT_MOD));
-    initWarn=errs.warnings||[];
+    (errs.warnings||[]).forEach(w=>console.warn("[mod 경고]",w));
   }catch(e){
     const ov=document.getElementById("ovStart");
     ov.innerHTML=`<h2 style="margin:0">모드를 불러오지 못했습니다</h2><div style="max-width:520px;white-space:pre-wrap">${esc(e.message)}</div><div class="hint">로컬에서는 파일을 직접 열지 말고 간단한 서버(예: python3 -m http.server)로 여세요.</div>`;
@@ -467,7 +455,6 @@ async function init(){
   }
   (JSON.stringify(MOD).match(/"[^"\\]+\.(?:png|jpe?g|gif|webp|svg)"/gi)||[]).forEach(q=>{const s=imgSrc(q.slice(1,-1));if(s)getImg(s)});
   document.title=MOD.screens?.opening?.title||document.title;
-  if(new URLSearchParams(location.search).get("dev")==="1")document.getElementById("dev").hidden=false;
-  dump();if(initWarn.length)msg.textContent="경고:\n- "+initWarn.join("\n- ");showOpening();requestAnimationFrame(loop);
+  showOpening();requestAnimationFrame(loop);
 }
 init();
