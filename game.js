@@ -466,6 +466,8 @@ async function init(){
     ov.classList.add("on");requestAnimationFrame(loop);return;
   }
   (JSON.stringify(MOD).match(/"[^"\\]+\.(?:png|jpe?g|gif|webp|svg)"/gi)||[]).forEach(q=>{const s=imgSrc(q.slice(1,-1));if(s)getImg(s)});
+  document.title=MOD.screens?.opening?.title||document.title;
+  if(new URLSearchParams(location.search).get("dev")==="1")document.getElementById("dev").hidden=false;
   dump();if(initWarn.length)msg.textContent="경고:\n- "+initWarn.join("\n- ");showOpening();requestAnimationFrame(loop);
 }
 init();
